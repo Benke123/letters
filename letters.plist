@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>questions</key>
+	<array>
+		<string>Vopros 1</string>
+		<string>Vopros 2</string>
+		<string>Vopros 3</string>
+		<string>Vopros 4</string>
+	</array>
+	<key>answers</key>
+	<array>
+		<string>1234567</string>
+		<string>dva tri</string>
+		<string>tri</string>
+		<string>4etire</string>
+	</array>
+</dict>
+</plist>
