@@ -180,7 +180,7 @@
 
 - (void)buttonPress:(UIButton *)button
 {
-    [self buttonTap];
+//    [self buttonTap];
     if (button.frame.origin.y > answerImage.frame.origin.y + answerImage.frame.size.height) {
         NSString *currentStr = button.titleLabel.text;
         if (count < answerMutableString.length) {
@@ -216,7 +216,8 @@
                 [alert show];
             } else {
                 [self trueAnswerSound];
-                [userDefaults setInteger:-1 forKey:@"completed level"];
+                [userDefaults setInteger:(self.numberLevel) forKey:@"completed level"];
+                NSLog(@"%i", [userDefaults integerForKey:@"completed level"]);
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
             }
