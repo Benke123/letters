@@ -34,8 +34,9 @@
 
 - (IBAction)pressStart:(id)sender
 {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
-    levelViewController.numberLevel = 1;
+    levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
     [self presentViewController:levelViewController animated:YES completion:nil];
 }
 

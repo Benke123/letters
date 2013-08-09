@@ -21,6 +21,7 @@
     int count;
     int countSpace;
     AVAudioPlayer *sound;
+    NSUserDefaults *userDefaults;
 }
 @end
 
@@ -41,11 +42,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    userDefaults = [NSUserDefaults standardUserDefaults];
     NSURL *file = [[NSBundle mainBundle] URLForResource:@"letters" withExtension:@"plist"];
     NSDictionary *plistContent = [NSDictionary dictionaryWithContentsOfURL:file];
     NSArray *questionArray = [plistContent objectForKey:@"questions"];
     NSArray *answerArray = [plistContent objectForKey:@"answers"];
-    trueAnswer = answerArray[self.numberLevel - 1];
+    trueAnswer = answerArray[self.numberLevel];
     normalTrueAnswer = [self normalString];
     buttonAnswerFrame = [[NSMutableArray alloc] initWithCapacity:trueAnswer.length];
     if (normalTrueAnswer.length < 15) {
@@ -60,7 +62,7 @@
         questionLabel.backgroundColor = [UIColor clearColor];
         questionLabel.textAlignment = UITextAlignmentCenter;
         questionLabel.numberOfLines = 10;
-        questionLabel.text = questionArray[self.numberLevel - 1];
+        questionLabel.text = questionArray[self.numberLevel];
         questionLabel.font = [questionLabel.font fontWithSize:sizeText];
         [self.view addSubview:questionLabel];
         answerImage = [[UIImageView alloc] initWithFrame:CGRectMake(0, heightScreen - 3 * widthScreen / 5, widthScreen, widthScreen / 4)];
@@ -207,12 +209,14 @@
         }
         NSString *answerString = answerMutableString;
         if ([answerString compare:normalTrueAnswer] == FALSE) {
-            if (self.numberLevel != 4) {
+            if (self.numberLevel != 3) {
                 [self trueAnswerSound];
+                [userDefaults setInteger:(self.numberLevel) forKey:@"completed level"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"level completed!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
             } else {
                 [self trueAnswerSound];
+                [userDefaults setInteger:-1 forKey:@"completed level"];
                 UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
                 [alert show];
             }
@@ -244,13 +248,14 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    if (self.numberLevel != 4) {
+    if (self.numberLevel != 3) {
     LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
-    levelViewController.numberLevel = numberLevel + 1;
+        levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
         [self presentViewController:levelViewController animated:YES completion:nil];
     } else {
         [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"] animated:YES completion:nil];
     }
+    [userDefaults synchronize];
 }
 
 - (NSMutableString *)changeString:(NSMutableString *)currentString
@@ -357,7 +362,7 @@
 {
     UIDevice *thisDevice = [UIDevice currentDevice];
     float sizeText = [self sizeTextDevice:thisDevice];
-    NSString *levelNumber = [NSString stringWithFormat:@"Level %i/4 ", self.numberLevel];
+    NSString *levelNumber = [NSString stringWithFormat:@"Level %i/4 ", self.numberLevel + 1];
     levelLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height / 12)];
     levelLabel.text = levelNumber;
     levelLabel.textAlignment = UITextAlignmentRight;
@@ -408,7 +413,6 @@
     for (int i = 0; i < index + 1; i++) {
         UIButton *currentButton = [buttonAnswerFrame objectAtIndex:i];
         NSString *strTitle = currentButton.currentTitle;
-        NSLog(@"[strTitle compare:@Yes] = %d, FALSE = %d", [strTitle compare:@"Yes"], FALSE);
         if ([strTitle compare:@"Yes"] == FALSE) {
             resultat++;
         }
