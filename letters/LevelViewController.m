@@ -20,7 +20,7 @@
     NSMutableString *answerMutableString;
     int count;
     int countSpace;
-    AVAudioPlayer *sound;
+//////    AVAudioPlayer *sound;
     NSUserDefaults *userDefaults;
 }
 @end
@@ -328,23 +328,23 @@
 
 - (void)buttonTap
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"tap" ofType:@"wav"];
-    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-    [sound play];
+//////    NSString *path = [[NSBundle mainBundle] pathForResource:@"tap" ofType:@"wav"];
+//////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+//////    [sound play];
 }
 
 - (void)falseAnswerSound
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"fail" ofType:@"wav"];
-    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-    [sound play];
+//////    NSString *path = [[NSBundle mainBundle] pathForResource:@"fail" ofType:@"wav"];
+//////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+//////    [sound play];
 }
 
 - (void)trueAnswerSound
 {
-    NSString *path = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"wav"];
-    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-    [sound play];
+/////    NSString *path = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"wav"];
+/////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+/////    [sound play];
 }
 
 - (void)backButtonCreate
