@@ -7,4 +7,5 @@
 //
 
 #define gSizeTextIPad 40
-#define gSizeTextIPhone 20
+//#define gSizeTextIPhone 20
+#define gSizeTextIPhone 50
