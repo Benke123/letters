@@ -37,8 +37,8 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
     if ([userDefaults integerForKey:@"completed level"] == 3) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-        [alert show];
+//////        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+//////        [alert show];
     } else {
         levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
         [self presentViewController:levelViewController animated:YES completion:nil];
