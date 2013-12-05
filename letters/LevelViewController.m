@@ -20,7 +20,7 @@
     NSMutableString *answerMutableString;
     int count;
     int countSpace;
-//////    AVAudioPlayer *sound;
+    AVAudioPlayer *sound;
     NSUserDefaults *userDefaults;
 }
 @end
@@ -212,14 +212,14 @@
             if (self.numberLevel != 3) {
                 [self trueAnswerSound];
                 [userDefaults setInteger:(self.numberLevel) forKey:@"completed level"];
-//////                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"level completed!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//////                [alert show];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"level completed!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
             } else {
                 [self trueAnswerSound];
                 [userDefaults setInteger:(self.numberLevel) forKey:@"completed level"];
                 NSLog(@"%i", [userDefaults integerForKey:@"completed level"]);
-//////                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-//////                [alert show];
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+                [alert show];
             }
         } else {
             if ((count < 0) || (count == normalTrueAnswer.length - 1)) {
@@ -248,7 +248,7 @@
     return string;
 }
 
-/*- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     if (self.numberLevel != 3) {
     LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
         levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
@@ -257,7 +257,7 @@
         [self presentViewController:[self.storyboard instantiateViewControllerWithIdentifier:@"ViewController"] animated:YES completion:nil];
     }
     [userDefaults synchronize];
-}*/
+}
 
 - (NSMutableString *)changeString:(NSMutableString *)currentString
 {
@@ -328,23 +328,23 @@
 
 - (void)buttonTap
 {
-//////    NSString *path = [[NSBundle mainBundle] pathForResource:@"tap" ofType:@"wav"];
-//////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-//////    [sound play];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"tap" ofType:@"wav"];
+    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+    [sound play];
 }
 
 - (void)falseAnswerSound
 {
-//////    NSString *path = [[NSBundle mainBundle] pathForResource:@"fail" ofType:@"wav"];
-//////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-//////    [sound play];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"fail" ofType:@"wav"];
+    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+    [sound play];
 }
 
 - (void)trueAnswerSound
 {
-/////    NSString *path = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"wav"];
-/////    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
-/////    [sound play];
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"success" ofType:@"wav"];
+    sound = [[AVAudioPlayer alloc] initWithData:[[NSData alloc] initWithContentsOfFile:path] error:nil];
+    [sound play];
 }
 
 - (void)backButtonCreate
