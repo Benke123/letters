@@ -32,18 +32,18 @@
     // Dispose of any resources that can be recreated.
 }
 
-///- (IBAction)pressStart:(id)sender
-///{
-///    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
-///    LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
-///    if ([userDefaults integerForKey:@"completed level"] == 3) {
-///        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
-///        [alert show];
-///    } else {
-///        levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
-///        [self presentViewController:levelViewController animated:YES completion:nil];
-///    }
-///}
+- (IBAction)pressStart:(id)sender
+{
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    LevelViewController *levelViewController = (LevelViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"LevelViewController"];
+    if ([userDefaults integerForKey:@"completed level"] == 3) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"You win!" message:nil delegate:self cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+        [alert show];
+    } else {
+        levelViewController.numberLevel = [userDefaults integerForKey:@"completed level"] + 1;
+        [self presentViewController:levelViewController animated:YES completion:nil];
+    }
+}
 
 - (float)sizeTextDevice:(UIDevice *)thisDevice
 {
